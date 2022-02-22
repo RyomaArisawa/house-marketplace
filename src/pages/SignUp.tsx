@@ -9,6 +9,7 @@ import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { FAILED_SIGN_UP } from '../consts/errorMessage';
 import { toast } from 'react-toastify';
+import { Oauth } from '../components/Oauth';
 
 export const SignUp: VFC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -112,6 +113,9 @@ export const SignUp: VFC = () => {
             </button>
           </div>
         </form>
+
+        <Oauth />
+
         <Link to="/sign-in" className="registerLink">
           Sign In Instead
         </Link>

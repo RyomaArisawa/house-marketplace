@@ -8,6 +8,7 @@ import { auth } from '../firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { FAILED_SIGN_IN } from '../consts/errorMessage';
+import { Oauth } from '../components/Oauth';
 
 export const SignIn: VFC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -86,6 +87,9 @@ export const SignIn: VFC = () => {
             </button>
           </div>
         </form>
+
+        <Oauth />
+
         <Link to="/sign-up" className="registerLink">
           Sign Up Instead
         </Link>
