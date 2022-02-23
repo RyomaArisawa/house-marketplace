@@ -6,7 +6,7 @@ import { auth, db } from '../firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-import { FAILED_UPDATE_PROFILE } from '../consts/errorMessage';
+import { FAILED_UPDATE_PROFILE } from '../consts/errorMessages';
 
 export const Profile: VFC = () => {
   const [changeDetails, setChangeDetails] = useState<boolean>(false);

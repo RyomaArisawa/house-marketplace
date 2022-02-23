@@ -7,7 +7,7 @@ import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { auth } from '../firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { FAILED_SIGN_IN } from '../consts/errorMessage';
+import { FAILED_SIGN_IN } from '../consts/errorMessages';
 import { Oauth } from '../components/Oauth';
 
 export const SignIn: VFC = () => {

@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import googleIcon from '../assets/svg/googleIcon.svg';
-import { FAILED_AUTH_WITH_GOOGLE } from '../consts/errorMessage';
+import { FAILED_AUTH_WITH_GOOGLE } from '../consts/errorMessages';
 import { auth, db } from '../firebase.config';
 export const Oauth = () => {
   const navigate = useNavigate();

@@ -7,7 +7,7 @@ import { FormData } from '../types/types';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
-import { FAILED_SIGN_UP } from '../consts/errorMessage';
+import { FAILED_SIGN_UP } from '../consts/errorMessages';
 import { toast } from 'react-toastify';
 import { Oauth } from '../components/Oauth';
 

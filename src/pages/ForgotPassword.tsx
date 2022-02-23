@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
-import { FAILED_RESET_EMAIL } from '../consts/errorMessage';
-import { SUCCESS_RESET_EMAIL } from '../consts/message';
+import { FAILED_RESET_EMAIL } from '../consts/errorMessages';
+import { SUCCESS_RESET_EMAIL } from '../consts/messages';
 import { auth } from '../firebase.config';
 export const ForgotPassword: VFC = () => {
   const [email, setEmail] = useState<string>('');
