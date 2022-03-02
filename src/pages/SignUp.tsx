@@ -3,17 +3,18 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { db, auth } from '../firebase.config';
-import { FormData } from '../types/types';
+import { UserFormData } from '../types/types';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { FAILED_SIGN_UP } from '../consts/errorMessages';
 import { toast } from 'react-toastify';
 import { Oauth } from '../components/Oauth';
+import { EXPLORE, FORGOTPASSWORD, SIGNIN } from '../consts/routerPaths';
 
 export const SignUp: VFC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<UserFormData>({
     name: '',
     email: '',
     password: '',
@@ -49,7 +50,7 @@ export const SignUp: VFC = () => {
       }
 
       //DB登録用データ生成
-      const formDataCopy: Partial<FormData> = formData;
+      const formDataCopy: Partial<UserFormData> = formData;
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
 
@@ -58,7 +59,7 @@ export const SignUp: VFC = () => {
       await setDoc(doc(db, 'users', user.uid), formDataCopy);
 
       //トップへ遷移
-      navigate('/');
+      navigate(EXPLORE);
     } catch (error) {
       toast.error(FAILED_SIGN_UP);
     }
@@ -103,7 +104,7 @@ export const SignUp: VFC = () => {
               onClick={() => setShowPassword((prevState) => !prevState)}
             />
           </div>
-          <Link to="/forgot-password" className="forgotPasswordLink">
+          <Link to={FORGOTPASSWORD} className="forgotPasswordLink">
             Forgot Password
           </Link>
           <div className="signUpBar">
@@ -116,7 +117,7 @@ export const SignUp: VFC = () => {
 
         <Oauth />
 
-        <Link to="/sign-in" className="registerLink">
+        <Link to={SIGNIN} className="registerLink">
           Sign In Instead
         </Link>
       </div>

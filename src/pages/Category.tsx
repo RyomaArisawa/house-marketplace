@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ListingItem } from '../components/ListingItem';
 import { Spinner } from '../components/Spinner';
-import { CATEGORY_NAME, TITLE_RENT, TITLE_SALE } from '../consts/consts';
+import { CATEGORY_NAME } from '../consts/consts';
 import { FAILED_FETCH_LISTINGS } from '../consts/errorMessages';
 import { db } from '../firebase.config';
 import { Listing } from '../types/types';
@@ -62,7 +62,9 @@ export const Category = () => {
     <div className="category">
       <header>
         <p className="pageHeader">
-          {params.categoryName === CATEGORY_NAME.RENT ? TITLE_RENT : TITLE_SALE}
+          {params.categoryName === CATEGORY_NAME.RENT
+            ? 'Places for rent'
+            : 'Places for sale'}
         </p>
       </header>
       {loading ? (

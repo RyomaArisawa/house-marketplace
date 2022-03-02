@@ -1,16 +1,19 @@
 import React, { VFC } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FormData } from '../types/types';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserFormData } from '../types/types';
 import { auth, db } from '../firebase.config';
 import { updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { FAILED_UPDATE_PROFILE } from '../consts/errorMessages';
+import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
+import homeIcon from '../assets/svg/homeIcon.svg';
+import { CREATELISTING, EXPLORE } from '../consts/routerPaths';
 
 export const Profile: VFC = () => {
   const [changeDetails, setChangeDetails] = useState<boolean>(false);
-  const [formData, setFormData] = useState<Partial<FormData>>({
+  const [formData, setFormData] = useState<Partial<UserFormData>>({
     name: auth.currentUser?.displayName ?? '',
     email: auth.currentUser?.email ?? '',
   });
@@ -21,7 +24,7 @@ export const Profile: VFC = () => {
 
   const onLogout = () => {
     auth.signOut();
-    navigate('/');
+    navigate(EXPLORE);
   };
 
   const onSubmit = async () => {
@@ -86,6 +89,11 @@ export const Profile: VFC = () => {
             />
           </form>
         </div>
+        <Link to={CREATELISTING} className="createListing">
+          <img src={homeIcon} alt="home" />
+          <p>Sell or rent your home</p>
+          <img src={arrowRight} alt="arrow right" />
+        </Link>
       </main>
     </div>
   );

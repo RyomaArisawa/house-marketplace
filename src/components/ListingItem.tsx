@@ -7,13 +7,17 @@ import { ListingItemProps } from '../types/types';
 import { Link } from 'react-router-dom';
 import { formatDisplayPrice } from '../util/format';
 import { CATEGORY_NAME } from '../consts/consts';
+import { CATEGORY } from '../consts/routerPaths';
 
 export const ListingItem: VFC<ListingItemProps> = ({ id, data, onDelete }) => {
   return (
     <li className="categoryListing">
-      <Link to={`/category/${data.type}/${id}`} className="categoryListingLink">
+      <Link
+        to={`${CATEGORY}/${data.type}/${id}`}
+        className="categoryListingLink"
+      >
         <img
-          src={data.imageUrls[0]}
+          src={data.imgUrls[0]}
           alt={data.name}
           className="categoryListingImg"
         />

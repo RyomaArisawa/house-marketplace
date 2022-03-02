@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import { FAILED_RESET_EMAIL } from '../consts/errorMessages';
-import { SUCCESS_RESET_EMAIL } from '../consts/messages';
+import { SUCCEEDED_RESET_EMAIL } from '../consts/messages';
+import { SIGNIN } from '../consts/routerPaths';
 import { auth } from '../firebase.config';
 export const ForgotPassword: VFC = () => {
   const [email, setEmail] = useState<string>('');
@@ -17,7 +18,7 @@ export const ForgotPassword: VFC = () => {
     e.preventDefault();
     try {
       await sendPasswordResetEmail(auth, email);
-      toast.success(SUCCESS_RESET_EMAIL);
+      toast.success(SUCCEEDED_RESET_EMAIL);
     } catch (error) {
       toast.error(FAILED_RESET_EMAIL);
     }
@@ -37,7 +38,7 @@ export const ForgotPassword: VFC = () => {
             value={email}
             onChange={onChange}
           />
-          <Link className="forgotPasswordLink" to="/sign-in">
+          <Link className="forgotPasswordLink" to={SIGNIN}>
             Sign In
           </Link>
           <div className="signInBar">

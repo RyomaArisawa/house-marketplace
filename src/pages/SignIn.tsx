@@ -1,7 +1,7 @@
 import React, { FormEvent, VFC } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FormData } from '../types/types';
+import { UserFormData } from '../types/types';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { auth } from '../firebase.config';
@@ -9,10 +9,11 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { FAILED_SIGN_IN } from '../consts/errorMessages';
 import { Oauth } from '../components/Oauth';
+import { EXPLORE, FORGOTPASSWORD, SIGNUP } from '../consts/routerPaths';
 
 export const SignIn: VFC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<UserFormData>({
     email: '',
     password: '',
   });
@@ -39,7 +40,7 @@ export const SignIn: VFC = () => {
       );
 
       if (userCredential.user) {
-        navigate('/');
+        navigate(EXPLORE);
       }
     } catch (error) {
       toast.error(FAILED_SIGN_IN);
@@ -77,7 +78,7 @@ export const SignIn: VFC = () => {
               onClick={() => setShowPassword((prevState) => !prevState)}
             />
           </div>
-          <Link to="/forgot-password" className="forgotPasswordLink">
+          <Link to={FORGOTPASSWORD} className="forgotPasswordLink">
             Forgot Password
           </Link>
           <div className="signInBar">
@@ -90,7 +91,7 @@ export const SignIn: VFC = () => {
 
         <Oauth />
 
-        <Link to="/sign-up" className="registerLink">
+        <Link to={SIGNUP} className="registerLink">
           Sign Up Instead
         </Link>
       </div>
