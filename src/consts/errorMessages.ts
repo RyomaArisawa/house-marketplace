@@ -6,6 +6,7 @@ export const FAILED_RESET_EMAIL = 'Could not send reset email';
 export const FAILED_AUTH_WITH_GOOGLE = 'Could not authorize with Google';
 export const FAILED_FETCH_LISTINGS = 'Could not fetch listings';
 export const FAILED_UPLOAD_IMAGES = 'Images not uploaded';
+export const FAILED_GET_LANDLORD_DATA = 'Could not get landloard data';
 
 /* バリデーションエラーメッセージ */
 export const ERROR_DISCOUNT_PRICE =

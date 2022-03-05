@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar';
 import { PrivateRoute } from './components/PrivateRoute';
 import {
   CATEGORY,
+  CONTACT,
   CREATELISTING,
   EXPLORE,
   FORGOTPASSWORD,
@@ -16,12 +17,14 @@ import {
 } from './consts/routerPaths';
 import { Category } from './pages/Category';
 import { CreateListing } from './pages/CreateListing';
+import { Listing } from './pages/Listing';
 import { Explore } from './pages/Explore';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { Offers } from './pages/Offers';
 import { Profile } from './pages/Profile';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
+import { Contact } from './pages/Contact';
 
 export const App = () => {
   return (
@@ -38,6 +41,11 @@ export const App = () => {
           <Route path={SIGNUP} element={<SignUp />} />
           <Route path={FORGOTPASSWORD} element={<ForgotPassword />} />
           <Route path={CREATELISTING} element={<CreateListing />} />
+          <Route
+            path={`${CATEGORY}/:categoryName/:listingId`}
+            element={<Listing />}
+          />
+          <Route path={`${CONTACT}/:landlordId`} element={<Contact />} />
         </Routes>
         <Navbar />
       </Router>

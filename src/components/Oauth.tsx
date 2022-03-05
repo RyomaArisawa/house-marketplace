@@ -8,8 +8,11 @@ import { FAILED_AUTH_WITH_GOOGLE } from '../consts/errorMessages';
 import { EXPLORE, SIGNUP } from '../consts/routerPaths';
 import { auth, db } from '../firebase.config';
 export const Oauth = () => {
+  /* Variables */
   const navigate = useNavigate();
   const location = useLocation();
+
+  /* Functions */
   const onGoogleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();

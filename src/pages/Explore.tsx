@@ -2,6 +2,7 @@ import React, { VFC } from 'react';
 import { Link } from 'react-router-dom';
 import rentCategoryImage from '../assets/jpg/rentCategoryImage.jpg';
 import sellCategoryImage from '../assets/jpg/sellCategoryImage.jpg';
+import { Slider } from '../components/Slider';
 import { CATEGORY_NAME } from '../consts/consts';
 import { CATEGORY } from '../consts/routerPaths';
 
@@ -12,6 +13,8 @@ export const Explore: VFC = () => {
         <p className="pageHeader">Explore</p>
       </header>
       <main>
+        <Slider />
+
         <p className="exploreCategoryHeading">Categories</p>
         <div className="exploreCategories">
           <Link to={`${CATEGORY}/${CATEGORY_NAME.RENT}`}>

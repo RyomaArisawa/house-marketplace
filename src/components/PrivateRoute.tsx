@@ -5,6 +5,7 @@ import { useAuthStatus } from '../hooks/useAuthStatus';
 import { Spinner } from './Spinner';
 
 export const PrivateRoute = () => {
+  /* Local States */
   const { loggedIn, checkingStatus } = useAuthStatus();
 
   if (checkingStatus) {

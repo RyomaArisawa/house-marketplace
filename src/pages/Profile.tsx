@@ -1,4 +1,4 @@
-import React, { VFC } from 'react';
+import React, { useEffect, VFC } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserFormData } from '../types/types';
@@ -12,16 +12,21 @@ import homeIcon from '../assets/svg/homeIcon.svg';
 import { CREATELISTING, EXPLORE } from '../consts/routerPaths';
 
 export const Profile: VFC = () => {
+  /* Local States */
   const [changeDetails, setChangeDetails] = useState<boolean>(false);
   const [formData, setFormData] = useState<Partial<UserFormData>>({
     name: auth.currentUser?.displayName ?? '',
     email: auth.currentUser?.email ?? '',
   });
 
+  /* Variables */
   const { name, email } = formData;
-
   const navigate = useNavigate();
 
+  /* useEffects */
+  useEffect(() => {}, []);
+
+  /* Functions */
   const onLogout = () => {
     auth.signOut();
     navigate(EXPLORE);
@@ -48,6 +53,7 @@ export const Profile: VFC = () => {
       [e.target.id]: e.target.value,
     }));
   };
+
   return (
     <div className="profile">
       <header className="profileHeader">

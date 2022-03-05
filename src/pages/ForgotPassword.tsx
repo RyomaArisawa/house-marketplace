@@ -9,8 +9,10 @@ import { SUCCEEDED_RESET_EMAIL } from '../consts/messages';
 import { SIGNIN } from '../consts/routerPaths';
 import { auth } from '../firebase.config';
 export const ForgotPassword: VFC = () => {
+  /* Local States */
   const [email, setEmail] = useState<string>('');
 
+  /* Functions */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
 
@@ -23,6 +25,7 @@ export const ForgotPassword: VFC = () => {
       toast.error(FAILED_RESET_EMAIL);
     }
   };
+
   return (
     <div className="pageContainer">
       <header>

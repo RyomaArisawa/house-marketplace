@@ -13,6 +13,7 @@ import { Oauth } from '../components/Oauth';
 import { EXPLORE, FORGOTPASSWORD, SIGNIN } from '../consts/routerPaths';
 
 export const SignUp: VFC = () => {
+  /* Local States */
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserFormData>({
     name: '',
@@ -20,10 +21,11 @@ export const SignUp: VFC = () => {
     password: '',
   });
 
+  /* Variables */
   const { name, email, password } = formData;
-
   const navigate = useNavigate();
 
+  /* Functions */
   //フォームのユーザ情報を設定
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({

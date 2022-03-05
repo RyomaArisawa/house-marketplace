@@ -16,9 +16,11 @@ import { db } from '../firebase.config';
 import { Listing } from '../types/types';
 
 export const Offers = () => {
+  /* Local States */
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  /* useEffects */
   useEffect(() => {
     const fetchListings = async () => {
       try {

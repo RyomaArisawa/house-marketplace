@@ -12,16 +12,18 @@ import { Oauth } from '../components/Oauth';
 import { EXPLORE, FORGOTPASSWORD, SIGNUP } from '../consts/routerPaths';
 
 export const SignIn: VFC = () => {
+  /* Local States */
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserFormData>({
     email: '',
     password: '',
   });
 
+  /* Variables */
   const { email, password } = formData;
-
   const navigate = useNavigate();
 
+  /* Functions */
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({
       ...prevState,

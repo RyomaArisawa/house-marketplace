@@ -6,8 +6,11 @@ import { ReactComponent as PersonOutlineIcon } from '../assets/svg/personOutline
 import { EXPLORE, OFFERS, PROFILE } from '../consts/routerPaths';
 
 export const Navbar = () => {
+  /* Variables */
   const navigate = useNavigate();
   const location = useLocation();
+
+  /* Functions */
   // パスが一致するかを判定
   const pathMatchRoute = (route: string): boolean => {
     if (route === location.pathname) return true;

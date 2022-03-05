@@ -18,11 +18,14 @@ import { db } from '../firebase.config';
 import { Listing } from '../types/types';
 
 export const Category = () => {
+  /* Local States */
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  /* Variables */
   const params = useParams();
 
+  /* useEffects */
   useEffect(() => {
     const fetchListings = async () => {
       try {

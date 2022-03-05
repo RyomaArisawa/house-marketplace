@@ -39,9 +39,12 @@ export const CreateListing = () => {
     userRef: '',
   };
 
+  /* Local States */
   const [geolocationEnabled, setGeolocationEnaled] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<ListingFormData>(initialState);
+
+  /* Variables */
   const {
     type,
     name,
@@ -60,6 +63,7 @@ export const CreateListing = () => {
   const navigate = useNavigate();
   const isMounted = useRef(true);
 
+  /* Functions */
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
