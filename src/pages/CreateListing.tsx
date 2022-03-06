@@ -70,7 +70,7 @@ export const CreateListing = () => {
     setLoading(true);
 
     //入力チェック
-    if (discountedPrice >= regularPrice) {
+    if (discountedPrice <= regularPrice) {
       setLoading(false);
       toast.error(ERROR_DISCOUNT_PRICE);
       return;

@@ -1,19 +1,36 @@
 import React, { useEffect, VFC } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserFormData } from '../types/types';
+import { Listing, UserFormData } from '../types/types';
 import { auth, db } from '../firebase.config';
 import { updateProfile } from 'firebase/auth';
-import { doc, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { FAILED_UPDATE_PROFILE } from '../consts/errorMessages';
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
 import homeIcon from '../assets/svg/homeIcon.svg';
 import { CREATELISTING, EXPLORE } from '../consts/routerPaths';
+import { Spinner } from '../components/Spinner';
+import { ListingItem } from '../components/ListingItem';
+import {
+  CONFIRM_DELETE_LISTING,
+  SUCCEEDED_DELETE_LISTING,
+} from '../consts/messages';
 
 export const Profile: VFC = () => {
   /* Local States */
   const [changeDetails, setChangeDetails] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [listings, setListings] = useState<Listing[]>([]);
   const [formData, setFormData] = useState<Partial<UserFormData>>({
     name: auth.currentUser?.displayName ?? '',
     email: auth.currentUser?.email ?? '',
@@ -24,7 +41,34 @@ export const Profile: VFC = () => {
   const navigate = useNavigate();
 
   /* useEffects */
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const fetchUserListings = async () => {
+      const listingsRef = collection(db, 'listings');
+
+      const q = query(
+        listingsRef,
+        where('userRef', '==', auth.currentUser?.uid),
+        orderBy('timestamp', 'desc')
+      );
+
+      const querySnap = await getDocs(q);
+
+      let listings: Listing[] = [];
+
+      querySnap.forEach((doc) => {
+        listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setListings(listings);
+      setLoading(false);
+    };
+
+    setLoading(true);
+    fetchUserListings();
+  }, [auth.currentUser?.uid]);
 
   /* Functions */
   const onLogout = () => {
@@ -53,6 +97,21 @@ export const Profile: VFC = () => {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const onDelete = async (listingId: string) => {
+    if (window.confirm(CONFIRM_DELETE_LISTING)) {
+      setLoading(true);
+      await deleteDoc(doc(db, 'listings', listingId));
+      const updatedListings: Listing[] = listings.filter(
+        (listing) => listing.id !== listingId
+      );
+      setListings(updatedListings);
+      setLoading(false);
+      toast.success(SUCCEEDED_DELETE_LISTING);
+    }
+  };
+
+  if (loading) return <Spinner />;
 
   return (
     <div className="profile">
@@ -100,6 +159,21 @@ export const Profile: VFC = () => {
           <p>Sell or rent your home</p>
           <img src={arrowRight} alt="arrow right" />
         </Link>
+
+        {!loading && listings?.length > 0 && (
+          <>
+            <p className="listingText">Your Listings</p>
+            <ul className="listingsList">
+              {listings.map((listing) => (
+                <ListingItem
+                  key={listing.id}
+                  {...listing}
+                  onDelete={() => onDelete(listing.id)}
+                />
+              ))}
+            </ul>
+          </>
+        )}
       </main>
     </div>
   );
