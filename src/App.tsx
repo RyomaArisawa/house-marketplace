@@ -7,13 +7,14 @@ import { PrivateRoute } from './components/PrivateRoute';
 import {
   CATEGORY,
   CONTACT,
-  CREATELISTING,
+  CREATE_LISTING,
+  EDIT_LISTING,
   EXPLORE,
-  FORGOTPASSWORD,
+  FORGOT_PASSWORD,
   OFFERS,
   PROFILE,
-  SIGNIN,
-  SIGNUP,
+  SIGN_IN,
+  SIGN_UP,
 } from './consts/routerPaths';
 import { Category } from './pages/Category';
 import { CreateListing } from './pages/CreateListing';
@@ -25,6 +26,7 @@ import { Profile } from './pages/Profile';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import { Contact } from './pages/Contact';
+import { EditListing } from './pages/EditListing';
 
 export const App = () => {
   return (
@@ -37,10 +39,11 @@ export const App = () => {
           <Route path={PROFILE} element={<PrivateRoute />}>
             <Route path={PROFILE} element={<Profile />} />
           </Route>
-          <Route path={SIGNIN} element={<SignIn />} />
-          <Route path={SIGNUP} element={<SignUp />} />
-          <Route path={FORGOTPASSWORD} element={<ForgotPassword />} />
-          <Route path={CREATELISTING} element={<CreateListing />} />
+          <Route path={SIGN_IN} element={<SignIn />} />
+          <Route path={SIGN_UP} element={<SignUp />} />
+          <Route path={FORGOT_PASSWORD} element={<ForgotPassword />} />
+          <Route path={CREATE_LISTING} element={<CreateListing />} />
+          <Route path={EDIT_LISTING} element={<EditListing />} />
           <Route
             path={`${CATEGORY}/:categoryName/:listingId`}
             element={<Listing />}

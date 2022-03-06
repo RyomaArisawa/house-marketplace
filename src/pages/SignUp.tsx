@@ -10,7 +10,7 @@ import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { FAILED_SIGN_UP } from '../consts/errorMessages';
 import { toast } from 'react-toastify';
 import { Oauth } from '../components/Oauth';
-import { EXPLORE, FORGOTPASSWORD, SIGNIN } from '../consts/routerPaths';
+import { EXPLORE, FORGOT_PASSWORD, SIGN_IN } from '../consts/routerPaths';
 
 export const SignUp: VFC = () => {
   /* Local States */
@@ -106,7 +106,7 @@ export const SignUp: VFC = () => {
               onClick={() => setShowPassword((prevState) => !prevState)}
             />
           </div>
-          <Link to={FORGOTPASSWORD} className="forgotPasswordLink">
+          <Link to={FORGOT_PASSWORD} className="forgotPasswordLink">
             Forgot Password
           </Link>
           <div className="signUpBar">
@@ -119,7 +119,7 @@ export const SignUp: VFC = () => {
 
         <Oauth />
 
-        <Link to={SIGNIN} className="registerLink">
+        <Link to={SIGN_IN} className="registerLink">
           Sign In Instead
         </Link>
       </div>

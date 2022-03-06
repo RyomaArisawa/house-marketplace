@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 import { FAILED_UPDATE_PROFILE } from '../consts/errorMessages';
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
 import homeIcon from '../assets/svg/homeIcon.svg';
-import { CREATELISTING, EXPLORE } from '../consts/routerPaths';
+import { CREATE_LISTING, EXPLORE } from '../consts/routerPaths';
 import { Spinner } from '../components/Spinner';
 import { ListingItem } from '../components/ListingItem';
 import {
@@ -154,7 +154,7 @@ export const Profile: VFC = () => {
             />
           </form>
         </div>
-        <Link to={CREATELISTING} className="createListing">
+        <Link to={CREATE_LISTING} className="createListing">
           <img src={homeIcon} alt="home" />
           <p>Sell or rent your home</p>
           <img src={arrowRight} alt="arrow right" />

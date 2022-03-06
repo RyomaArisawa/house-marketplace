@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import { FAILED_RESET_EMAIL } from '../consts/errorMessages';
 import { SUCCEEDED_RESET_EMAIL } from '../consts/messages';
-import { SIGNIN } from '../consts/routerPaths';
+import { SIGN_IN } from '../consts/routerPaths';
 import { auth } from '../firebase.config';
 export const ForgotPassword: VFC = () => {
   /* Local States */
@@ -41,7 +41,7 @@ export const ForgotPassword: VFC = () => {
             value={email}
             onChange={onChange}
           />
-          <Link className="forgotPasswordLink" to={SIGNIN}>
+          <Link className="forgotPasswordLink" to={SIGN_IN}>
             Sign In
           </Link>
           <div className="signInBar">

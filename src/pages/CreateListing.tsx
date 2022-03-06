@@ -11,7 +11,7 @@ import {
   ERROR_IMAGES,
   FAILED_UPLOAD_IMAGES,
 } from '../consts/errorMessages';
-import { CATEGORY, SIGNIN } from '../consts/routerPaths';
+import { CATEGORY, SIGN_IN } from '../consts/routerPaths';
 import { auth, db, storage } from '../firebase.config';
 import {
   ListingFormData,
@@ -209,7 +209,7 @@ export const CreateListing = () => {
         if (user) {
           setFormData({ ...formData, userRef: user.uid });
         } else {
-          navigate(SIGNIN);
+          navigate(SIGN_IN);
         }
       });
     }

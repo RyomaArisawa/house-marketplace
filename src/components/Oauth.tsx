@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import googleIcon from '../assets/svg/googleIcon.svg';
 import { FAILED_AUTH_WITH_GOOGLE } from '../consts/errorMessages';
-import { EXPLORE, SIGNUP } from '../consts/routerPaths';
+import { EXPLORE, SIGN_UP } from '../consts/routerPaths';
 import { auth, db } from '../firebase.config';
 export const Oauth = () => {
   /* Variables */
@@ -39,7 +39,7 @@ export const Oauth = () => {
 
   return (
     <div className="socialLogin">
-      <p>Sign {location.pathname === SIGNUP ? 'Up' : 'In'} with </p>
+      <p>Sign {location.pathname === SIGN_UP ? 'Up' : 'In'} with </p>
       <button className="socialIconDiv" onClick={onGoogleClick}>
         <img className="socialIconImg" src={googleIcon} alt="google" />
       </button>

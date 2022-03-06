@@ -9,7 +9,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { FAILED_SIGN_IN } from '../consts/errorMessages';
 import { Oauth } from '../components/Oauth';
-import { EXPLORE, FORGOTPASSWORD, SIGNUP } from '../consts/routerPaths';
+import { EXPLORE, FORGOT_PASSWORD, SIGN_UP } from '../consts/routerPaths';
 
 export const SignIn: VFC = () => {
   /* Local States */
@@ -80,7 +80,7 @@ export const SignIn: VFC = () => {
               onClick={() => setShowPassword((prevState) => !prevState)}
             />
           </div>
-          <Link to={FORGOTPASSWORD} className="forgotPasswordLink">
+          <Link to={FORGOT_PASSWORD} className="forgotPasswordLink">
             Forgot Password
           </Link>
           <div className="signInBar">
@@ -93,7 +93,7 @@ export const SignIn: VFC = () => {
 
         <Oauth />
 
-        <Link to={SIGNUP} className="registerLink">
+        <Link to={SIGN_UP} className="registerLink">
           Sign Up Instead
         </Link>
       </div>
