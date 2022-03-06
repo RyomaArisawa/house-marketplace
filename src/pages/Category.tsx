@@ -11,19 +11,24 @@ import {
 } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ListingItem } from '../components/ListingItem';
 import { Spinner } from '../components/Spinner';
+import { CATEGORY_NAME } from '../consts/consts';
 import { FAILED_FETCH_LISTINGS } from '../consts/errorMessages';
 import { db } from '../firebase.config';
 import { Listing } from '../types/types';
 
-export const Offers = () => {
+export const Category = () => {
   /* Local States */
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [lastFetchedListing, setLastFetchedListing] =
     useState<QueryDocumentSnapshot<DocumentData>>();
+
+  /* Variables */
+  const params = useParams();
 
   /* useEffects */
   useEffect(() => {
@@ -34,7 +39,7 @@ export const Offers = () => {
         //クエリの生成(categoryNameに合致するデータを10件取得)
         const q = query(
           listingsRef,
-          where('offer', '==', true),
+          where('type', '==', params.categoryName),
           orderBy('timestamp', 'desc'),
           limit(1)
         );
@@ -62,7 +67,7 @@ export const Offers = () => {
     };
 
     fetchListings();
-  }, []);
+  }, [params.categoryName]);
 
   const onFetchMoreListings = async () => {
     try {
@@ -71,7 +76,7 @@ export const Offers = () => {
       //クエリの生成(categoryNameに合致するデータを10件取得)
       const q = query(
         listingsRef,
-        where('offer', '==', true),
+        where('type', '==', params.categoryName),
         orderBy('timestamp', 'desc'),
         startAfter(lastFetchedListing),
         limit(10)
@@ -102,7 +107,11 @@ export const Offers = () => {
   return (
     <div className="category">
       <header>
-        <p className="pageHeader">Offers</p>
+        <p className="pageHeader">
+          {params.categoryName === CATEGORY_NAME.RENT
+            ? 'Places for rent'
+            : 'Places for sale'}
+        </p>
       </header>
       {loading ? (
         <Spinner />
@@ -125,7 +134,7 @@ export const Offers = () => {
           </main>
         </>
       ) : (
-        <p>There are no current offers</p>
+        <p>No listings for {params.categoryName}</p>
       )}
     </div>
   );
