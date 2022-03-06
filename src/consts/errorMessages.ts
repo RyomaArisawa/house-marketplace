@@ -7,6 +7,10 @@ export const FAILED_AUTH_WITH_GOOGLE = 'Could not authorize with Google';
 export const FAILED_FETCH_LISTINGS = 'Could not fetch listings';
 export const FAILED_UPLOAD_IMAGES = 'Images not uploaded';
 export const FAILED_GET_LANDLORD_DATA = 'Could not get landloard data';
+export const FAILED_FETCH_EDIT_LISTING = 'Listing does not exist';
+
+/* 権限エラーメッセージ */
+export const UNAUTHORIZED_EDIT_LISTING = 'You cannot edit that listing';
 
 /* バリデーションエラーメッセージ */
 export const ERROR_DISCOUNT_PRICE =

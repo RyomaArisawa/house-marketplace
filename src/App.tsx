@@ -43,7 +43,10 @@ export const App = () => {
           <Route path={SIGN_UP} element={<SignUp />} />
           <Route path={FORGOT_PASSWORD} element={<ForgotPassword />} />
           <Route path={CREATE_LISTING} element={<CreateListing />} />
-          <Route path={EDIT_LISTING} element={<EditListing />} />
+          <Route
+            path={`${EDIT_LISTING}/:listingId`}
+            element={<EditListing />}
+          />
           <Route
             path={`${CATEGORY}/:categoryName/:listingId`}
             element={<Listing />}

@@ -18,7 +18,7 @@ import { toast } from 'react-toastify';
 import { FAILED_UPDATE_PROFILE } from '../consts/errorMessages';
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
 import homeIcon from '../assets/svg/homeIcon.svg';
-import { CREATE_LISTING, EXPLORE } from '../consts/routerPaths';
+import { CREATE_LISTING, EDIT_LISTING, EXPLORE } from '../consts/routerPaths';
 import { Spinner } from '../components/Spinner';
 import { ListingItem } from '../components/ListingItem';
 import {
@@ -111,6 +111,10 @@ export const Profile: VFC = () => {
     }
   };
 
+  const onEdit = (listingId: string) => {
+    navigate(`${EDIT_LISTING}/${listingId}`);
+  };
+
   if (loading) return <Spinner />;
 
   return (
@@ -169,6 +173,7 @@ export const Profile: VFC = () => {
                   key={listing.id}
                   {...listing}
                   onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
                 />
               ))}
             </ul>

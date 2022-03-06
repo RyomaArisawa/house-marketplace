@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg';
+import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg';
 import bedIcon from '../assets/svg/bedIcon.svg';
 import bathtubIcon from '../assets/svg/bathtubIcon.svg';
 import { VFC } from 'react';
@@ -9,7 +10,12 @@ import { formatDisplayPrice } from '../util/format';
 import { CATEGORY_NAME } from '../consts/consts';
 import { CATEGORY } from '../consts/routerPaths';
 
-export const ListingItem: VFC<ListingItemProps> = ({ id, data, onDelete }) => {
+export const ListingItem: VFC<ListingItemProps> = ({
+  id,
+  data,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <li className="categoryListing">
       <Link
@@ -48,8 +54,12 @@ export const ListingItem: VFC<ListingItemProps> = ({ id, data, onDelete }) => {
         <DeleteIcon
           className="removeIcon"
           fill="rgb(231, 76, 60)"
-          onClick={() => onDelete(data.id, data.name)}
+          onClick={() => onDelete(data.id)}
         />
+      )}
+
+      {onEdit && (
+        <EditIcon className="editIcon" onClick={() => onEdit(data.id)} />
       )}
     </li>
   );

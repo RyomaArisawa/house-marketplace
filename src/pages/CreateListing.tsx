@@ -21,6 +21,7 @@ import {
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { SUCCEEDED_ADD_LISTING } from '../consts/messages';
+
 export const CreateListing = () => {
   const initialState: ListingFormData = {
     type: CATEGORY_NAME.RENT,
@@ -62,6 +63,23 @@ export const CreateListing = () => {
   } = formData;
   const navigate = useNavigate();
   const isMounted = useRef(true);
+
+  /* useEffects */
+  useEffect(() => {
+    if (isMounted) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          setFormData({ ...formData, userRef: user.uid });
+        } else {
+          navigate(SIGN_IN);
+        }
+      });
+    }
+    return () => {
+      isMounted.current = false;
+    };
+    //eslint-disable-next-line
+  }, [isMounted]);
 
   /* Functions */
   const onSubmit = async (e: FormEvent) => {
@@ -202,22 +220,6 @@ export const CreateListing = () => {
       }));
     }
   };
-
-  useEffect(() => {
-    if (isMounted) {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setFormData({ ...formData, userRef: user.uid });
-        } else {
-          navigate(SIGN_IN);
-        }
-      });
-    }
-    return () => {
-      isMounted.current = false;
-    };
-    //eslint-disable-next-line
-  }, [isMounted]);
 
   if (loading) return <Spinner />;
 

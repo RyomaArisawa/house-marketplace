@@ -21,7 +21,7 @@ export interface ListingFormData {
   images: [];
   latitude: number;
   longitude: number;
-  userRef: string;
+  userRef?: string;
   imgUrls?: [];
   geolocation?: Geolocation;
   location?: string;
@@ -34,7 +34,8 @@ export interface Listing {
 }
 
 export interface ListingItemProps extends Listing {
-  onDelete?: (id: string, data: DocumentData) => void;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
 }
 
 export interface Geolocation {
