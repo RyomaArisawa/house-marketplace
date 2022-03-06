@@ -49,7 +49,7 @@ export const EditListing = () => {
   };
 
   /* Local States */
-  const [geolocationEnabled, setGeolocationEnaled] = useState<boolean>(false);
+  const [geolocationEnabled] = useState<boolean>(false);
   const [listing, setListing] = useState<DocumentData>();
   const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<ListingFormData>(initialState);

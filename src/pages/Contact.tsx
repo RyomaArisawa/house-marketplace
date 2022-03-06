@@ -9,7 +9,7 @@ export const Contact = () => {
   /* Local States */
   const [message, setMessage] = useState<string>('');
   const [landlord, setLandlord] = useState<DocumentData>();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   /* Variables */
   const params = useParams();
