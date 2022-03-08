@@ -49,7 +49,7 @@ export interface Address {
   types: string[];
 }
 
-export interface Geocodeing {
+export interface Geocoding {
   address_components: Address[];
   formatted_address: string;
   geometry: {
@@ -69,6 +69,6 @@ export interface Geocodeing {
 }
 
 export interface GeocodingResponse {
-  results?: Geocodeing[];
+  results?: Geocoding[];
   status: string;
 }
